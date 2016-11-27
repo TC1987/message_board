@@ -37,13 +37,6 @@ app.get('/', function(req, res) {
     Post.find({}).populate('comments').exec(function(err, posts) {
         res.render('index', {posts: posts});
     })
-    // Post.find({}, function(err, posts) {
-    //     if (err) {
-    //         console.log('There was an error retrieving the posts from the DB.');
-    //     } else {
-    //         res.render('index', {posts: posts});
-    //     }
-    // })
 })
 
 app.post('/post', function(req, res) {
