@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Message Board</title>
+    </head>
+    <body>
+        <h1>Message Board</h1>
+        <form action="/post" method="post">
+            <label for="name">Name</label>
+            <input type="text" name="name" id="name">
+            <label for="message">Message</label>
+            <textarea cols="60" rows="10" id="message" name="message"></textarea>
+            <input type="submit" value="Post Message">
+        </form>
+        <% posts.forEach(function(post) { %>
+            <div class="post">
+                <p>Name: <%= post.name %></p>
+                <p>Message: <%= post.message %></p>
+            </div>
+
+            <div class="comments">
+                <% post.comments.forEach(function(comment) { %>
+                    <p>Name: <%= comment.name %></p>
+                    <p>Comment: <%= comment.comment %></p>
+                <% }) %>
+            <div class="comment">
+                <form action="/post/<%= post._id %>" method="post">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name">
+                    <label for="comment">Comment</label>
+                    <textarea cols="60" rows="10" id="comment" name="comment"></textarea>
+                    <input type="submit" value="Post Comment">
+                </form>
+            </div>
+        <% }) %>
+    </body>
+</html>
